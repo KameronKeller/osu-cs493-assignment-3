@@ -3,6 +3,7 @@ const { Router } = require('express')
 const { Business } = require('../models/business')
 const { Photo } = require('../models/photo')
 const { Review } = require('../models/review')
+const { User, UserClientFields } = require('../models/user')
 
 const router = Router()
 
@@ -37,6 +38,22 @@ router.get('/:userId/photos', async function (req, res) {
   res.status(200).json({
     photos: userPhotos
   })
+})
+
+/*
+ * Route to create a user.
+ */
+router.post('/', async function (req, res) {
+  try {
+    const user = await User.create(req.body, UserClientFields)
+    res.status(201).send({ id: user.id })
+  } catch (e) {
+    if (e instanceof ValidationError) {
+      res.status(400).send({ error: e.message })
+    } else {
+      throw e
+    }
+  }
 })
 
 module.exports = router
