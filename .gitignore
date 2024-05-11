@@ -1,1 +1,7 @@
 node_modules/
+eslint.config.mjs
+notes-server.js
+serverstart.sh
+termmonitor.sh
+dbstart.sh
+dev-compose.yml
