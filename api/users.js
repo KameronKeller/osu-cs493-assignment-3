@@ -49,6 +49,21 @@ router.get('/:userId/photos', async function (req, res) {
 })
 
 /*
+ * Route to get info about a user.
+ */
+router.get('/:userId', async function (req, res) {
+  const userId = req.params.userId
+  const user = await User.findByPk(userId, {attributes: ['name', 'email', 'admin']})
+  if (user) {
+    res.status(200).send(user)
+  } else {
+    next()
+  }
+
+})
+
+
+/*
  * Route to create a user.
  */
 router.post('/', async function (req, res) {
