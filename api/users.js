@@ -4,8 +4,16 @@ const { Business } = require('../models/business')
 const { Photo } = require('../models/photo')
 const { Review } = require('../models/review')
 const { User, UserClientFields } = require('../models/user')
+const { ValidationError } = require('sequelize')
+
+const { generateAuthToken, validateUser } = require('../lib/auth')
 
 const router = Router()
+
+async function getUser(email) {
+  const user = await User.findOne({ where: { email: email } });
+  return user
+}
 
 /*
  * Route to list all of a user's businesses.
@@ -45,7 +53,7 @@ router.get('/:userId/photos', async function (req, res) {
  */
 router.post('/', async function (req, res) {
   try {
-    const user = await User.create(req.body, UserClientFields)
+    const user = await User.create(req.body, {fields: UserClientFields})
     res.status(201).send({ id: user.id })
   } catch (e) {
     if (e instanceof ValidationError) {
@@ -55,5 +63,35 @@ router.post('/', async function (req, res) {
     }
   }
 })
+
+/*
+ * Route to login as a user.
+ */
+router.post("/login", async function (req, res) {
+  const email = req.body.email;
+  const password = req.body.password;
+  if (!req.body || !email || !password) {
+    res.status(400).json({
+      error: "Request body needs user email and password.",
+    });
+  } else {
+    try {
+      const user = await getUser(email)
+      const authenticated = await validateUser(user, password);
+      if (authenticated) {
+        const token = generateAuthToken(user.id)
+        res.status(200).send({token: token});
+      } else {
+        res.status(401).send({
+          error: "Invalid authentication credentials"
+        });
+      }
+    } catch (e) {
+      res.status(500).send({
+        error: "Error logging in.  Try again later."
+      });
+    }
+  }
+});
 
 module.exports = router
