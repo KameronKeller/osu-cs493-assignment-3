@@ -13,7 +13,7 @@ const User = sequelize.define('user', {
     name: { type: DataTypes.STRING, allowNull: false },
     email: { type: DataTypes.STRING, allowNull: false },
     password: { type: DataTypes.STRING, allowNull: false },
-    admin: { type: DataTypes.BOOLEAN, allowNull: false }
+    admin: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false }
 })
 
 User.beforeCreate(async (user, options) => {
@@ -29,7 +29,6 @@ User.beforeBulkCreate( (users, options) => {
         const hashedPassword = bcrypt.hashSync(user.password, 8);
         console.log("== hashedPassword", hashedPassword);
         user.password = hashedPassword
-        user.admin = false
     })
 })
 
@@ -44,5 +43,4 @@ exports.UserClientFields = [
     'name',
     'email',
     'password',
-    'admin'
 ]
