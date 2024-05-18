@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "10f8b1fe-eb1b-49d9-bd57-4ba9362d2d62",
+		"_postman_id": "6e8b7385-7d80-443e-ad08-f2c22c23af86",
 		"name": "Businesses API Tests",
 		"description": "A simple API for a Yelp-like application.",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33378486"
 	},
 	"item": [
 		{
@@ -33,7 +34,6 @@
 										{
 											"key": "businessId",
 											"value": "1",
-											"type": "string",
 											"description": "(Required) Unique ID of a business."
 										}
 									]
@@ -120,14 +120,16 @@
 									{
 										"key": "Content-Type",
 										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"ownerId\": 7,\n\t\"name\": \"Allan's Coffee & Tea\",\n\t\"address\": \"2541 NW Monroe Ave.\",\n\t\"city\": \"Corvallis\",\n\t\"state\": \"OR\",\n\t\"zip\": \"97330\",\n\t\"phone\": \"541-757-0828\",\n\t\"category\": \"Restaurant\",\n\t\"subcategory\": \"Coffee Shop\",\n\t\"website\": \"https://www.allanscoffee.com/\"\n}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{\n\t\"ownerId\": 7,\n\t\"name\": \"Allan's Coffee & Tea\",\n\t\"address\": \"2541 NW Monroe Ave.\",\n\t\"city\": \"Corvallis\",\n\t\"state\": \"OR\",\n\t\"zip\": \"97330\",\n\t\"phone\": \"541-757-0828\",\n\t\"category\": \"Restaurant\",\n\t\"subcategory\": \"Coffee Shop\",\n\t\"website\": \"https://www.allanscoffee.com/\"\n}"
 								},
 								"url": {
 									"raw": "{{baseUrl}}/businesses/:businessId",
@@ -141,8 +143,7 @@
 									"variable": [
 										{
 											"key": "businessId",
-											"value": "17",
-											"type": "string",
+											"value": "25",
 											"description": "(Required) Unique ID of a business."
 										}
 									]
@@ -270,7 +271,13 @@
 									"type": "noauth"
 								},
 								"method": "DELETE",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{baseUrl}}/businesses/:businessId",
 									"host": [
@@ -284,7 +291,6 @@
 										{
 											"key": "businessId",
 											"value": "7",
-											"type": "string",
 											"description": "(Required) Unique ID of a business."
 										}
 									]
@@ -360,9 +366,7 @@
 								}
 							]
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Fetch a list of businesses",
@@ -437,14 +441,16 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"ownerId\": 16,\n    \"name\": \"American Dream Pizza\",\n    \"address\": \"2525 NW Monroe Ave.\",\n    \"city\": \"Corvallis\",\n    \"state\": \"OR\",\n    \"zip\": \"97330\",\n    \"phone\": \"541-757-1713\",\n    \"category\": \"Restaurant\",\n    \"subcategory\": \"Pizza\",\n    \"website\": \"http://adpizza.com\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"ownerId\": 6,\n    \"name\": \"American Dream Pizza\",\n    \"address\": \"2525 NW Monroe Ave.\",\n    \"city\": \"Corvallis\",\n    \"state\": \"OR\",\n    \"zip\": \"97330\",\n    \"phone\": \"541-757-1713\",\n    \"category\": \"Restaurant\",\n    \"subcategory\": \"Pizza\",\n    \"website\": \"http://adpizza.com\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/businesses",
@@ -522,8 +528,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "photos",
@@ -552,7 +557,6 @@
 										{
 											"key": "photoID",
 											"value": "1",
-											"type": "string",
 											"description": "(Required) Unique ID of a photo."
 										}
 									]
@@ -639,14 +643,16 @@
 									{
 										"key": "Content-Type",
 										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"userId\": 25,\n    \"businessId\": 2,\n    \"caption\": \"Look at this sweet bag of mixed fasteners I just bought!\"\n}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{\n    \"userId\": 25,\n    \"businessId\": 2,\n    \"caption\": \"Look at this sweet bag of mixed fasteners I just bought!\"\n}"
 								},
 								"url": {
 									"raw": "{{baseUrl}}/photos/:photoID",
@@ -660,8 +666,7 @@
 									"variable": [
 										{
 											"key": "photoID",
-											"value": "1",
-											"type": "string",
+											"value": "10",
 											"description": "(Required) Unique ID of a photo."
 										}
 									]
@@ -826,7 +831,13 @@
 									"type": "noauth"
 								},
 								"method": "DELETE",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{baseUrl}}/photos/:photoID",
 									"host": [
@@ -839,8 +850,7 @@
 									"variable": [
 										{
 											"key": "photoID",
-											"value": "7",
-											"type": "string",
+											"value": "20",
 											"description": "(Required) Unique ID of a photo."
 										}
 									]
@@ -916,9 +926,7 @@
 								}
 							]
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Add a new photo",
@@ -931,14 +939,16 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": 21,\n    \"businessId\": 10,\n    \"caption\": \"So many books!\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"userId\": 6,\n    \"businessId\": 10,\n    \"caption\": \"So many books!\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/photos",
@@ -1016,8 +1026,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "reviews",
@@ -1045,8 +1054,7 @@
 									"variable": [
 										{
 											"key": "reviewID",
-											"value": "1",
-											"type": "string",
+											"value": "12",
 											"description": "(Required) Unique ID of a review."
 										}
 									]
@@ -1133,14 +1141,16 @@
 									{
 										"key": "Content-Type",
 										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"userId\": 25,\n    \"businessId\": 2,\n    \"dollars\": 1,\n    \"stars\": 5,\n    \"review\": \"How many fasteners can one room hold?\"\n}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{\n    \"userId\": 25,\n    \"businessId\": 2,\n    \"dollars\": 1,\n    \"stars\": 5,\n    \"review\": \"How many fasteners can one room hold?\"\n}"
 								},
 								"url": {
 									"raw": "{{baseUrl}}/reviews/:reviewID",
@@ -1154,8 +1164,7 @@
 									"variable": [
 										{
 											"key": "reviewID",
-											"value": "1",
-											"type": "string",
+											"value": "20",
 											"description": "(Required) Unique ID of a review."
 										}
 									]
@@ -1320,7 +1329,13 @@
 									"type": "noauth"
 								},
 								"method": "DELETE",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{baseUrl}}/reviews/:reviewID",
 									"host": [
@@ -1333,8 +1348,7 @@
 									"variable": [
 										{
 											"key": "reviewID",
-											"value": "7",
-											"type": "string",
+											"value": "20",
 											"description": "(Required) Unique ID of a review."
 										}
 									]
@@ -1410,9 +1424,7 @@
 								}
 							]
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Add a new review",
@@ -1425,14 +1437,16 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": 21,\n    \"businessId\": 10,\n    \"dollars\": 1,\n    \"stars\": 5,\n    \"review\": \"My favorite bookstore.\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"userId\": 6,\n    \"businessId\": 10,\n    \"dollars\": 1,\n    \"stars\": 5,\n    \"review\": \"My favorite bookstore.\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/reviews",
@@ -1541,47 +1555,28 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
-			"name": "users/{userId}",
+			"name": "users",
 			"item": [
 				{
-					"name": "Fetch a user's owned businesses.",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/businesses",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"businesses"
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "0",
-									"type": "string",
-									"description": "(Required) Unique ID of a user."
-								}
-							]
-						},
-						"description": "Returns a list of all of the businesses owned by the user specified by `userId`.\n"
-					},
-					"response": [
+					"name": "{userId}",
+					"item": [
 						{
-							"name": "Success",
-							"originalRequest": {
+							"name": "Fetch a user's owned businesses.",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{baseUrl}}/users/:userId/businesses",
 									"host": [
@@ -1594,60 +1589,65 @@
 									],
 									"variable": [
 										{
-											"key": "userId"
+											"key": "userId",
+											"value": "6",
+											"description": "(Required) Unique ID of a user."
 										}
 									]
-								}
+								},
+								"description": "Returns a list of all of the businesses owned by the user specified by `userId`.\n"
 							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
+							"response": [
 								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"lodgings\": [\n  {\n   \"ownerId\": 16,\n   \"name\": \"American Dream Pizza\",\n   \"address\": \"2525 NW Monroe Ave.\",\n   \"city\": \"Corvallis\",\n   \"state\": \"OR\",\n   \"zip\": \"97330\",\n   \"phone\": \"541-757-1713\",\n   \"category\": \"Restaurant\",\n   \"subcategory\": \"Pizza\",\n   \"website\": \"http://adpizza.com\",\n   \"email\": \"brian@adpizza.com\",\n   \"reviews\": [\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"dollars\": 3,\n     \"stars\": 5,\n     \"review\": \"Great produce!\"\n    },\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"dollars\": 3,\n     \"stars\": 5,\n     \"review\": \"Great produce!\"\n    }\n   ],\n   \"photos\": [\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"caption\": \"Kale!\"\n    },\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"caption\": \"Kale!\"\n    }\n   ]\n  },\n  {\n   \"ownerId\": 16,\n   \"name\": \"American Dream Pizza\",\n   \"address\": \"2525 NW Monroe Ave.\",\n   \"city\": \"Corvallis\",\n   \"state\": \"OR\",\n   \"zip\": \"97330\",\n   \"phone\": \"541-757-1713\",\n   \"category\": \"Restaurant\",\n   \"subcategory\": \"Pizza\",\n   \"website\": \"http://adpizza.com\",\n   \"email\": \"brian@adpizza.com\",\n   \"reviews\": [\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"dollars\": 3,\n     \"stars\": 5,\n     \"review\": \"Great produce!\"\n    },\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"dollars\": 3,\n     \"stars\": 5,\n     \"review\": \"Great produce!\"\n    }\n   ],\n   \"photos\": [\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"caption\": \"Kale!\"\n    },\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"caption\": \"Kale!\"\n    }\n   ]\n  }\n ]\n}"
-						}
-					]
-				},
-				{
-					"name": "Fetch a user's photos.",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/photos",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"photos"
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "21",
-									"type": "string",
-									"description": "(Required) Unique ID of a user."
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId/businesses",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId",
+												"businesses"
+											],
+											"variable": [
+												{
+													"key": "userId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"lodgings\": [\n  {\n   \"ownerId\": 16,\n   \"name\": \"American Dream Pizza\",\n   \"address\": \"2525 NW Monroe Ave.\",\n   \"city\": \"Corvallis\",\n   \"state\": \"OR\",\n   \"zip\": \"97330\",\n   \"phone\": \"541-757-1713\",\n   \"category\": \"Restaurant\",\n   \"subcategory\": \"Pizza\",\n   \"website\": \"http://adpizza.com\",\n   \"email\": \"brian@adpizza.com\",\n   \"reviews\": [\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"dollars\": 3,\n     \"stars\": 5,\n     \"review\": \"Great produce!\"\n    },\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"dollars\": 3,\n     \"stars\": 5,\n     \"review\": \"Great produce!\"\n    }\n   ],\n   \"photos\": [\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"caption\": \"Kale!\"\n    },\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"caption\": \"Kale!\"\n    }\n   ]\n  },\n  {\n   \"ownerId\": 16,\n   \"name\": \"American Dream Pizza\",\n   \"address\": \"2525 NW Monroe Ave.\",\n   \"city\": \"Corvallis\",\n   \"state\": \"OR\",\n   \"zip\": \"97330\",\n   \"phone\": \"541-757-1713\",\n   \"category\": \"Restaurant\",\n   \"subcategory\": \"Pizza\",\n   \"website\": \"http://adpizza.com\",\n   \"email\": \"brian@adpizza.com\",\n   \"reviews\": [\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"dollars\": 3,\n     \"stars\": 5,\n     \"review\": \"Great produce!\"\n    },\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"dollars\": 3,\n     \"stars\": 5,\n     \"review\": \"Great produce!\"\n    }\n   ],\n   \"photos\": [\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"caption\": \"Kale!\"\n    },\n    {\n     \"userId\": 7,\n     \"businessId\": 3,\n     \"caption\": \"Kale!\"\n    }\n   ]\n  }\n ]\n}"
 								}
 							]
 						},
-						"description": "Returns a list of all of the photos posted by the user specified by `userId`.\n"
-					},
-					"response": [
 						{
-							"name": "Success",
-							"originalRequest": {
+							"name": "Fetch a user's photos.",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{baseUrl}}/users/:userId/photos",
 									"host": [
@@ -1660,60 +1660,65 @@
 									],
 									"variable": [
 										{
-											"key": "userId"
+											"key": "userId",
+											"value": "6",
+											"description": "(Required) Unique ID of a user."
 										}
 									]
-								}
+								},
+								"description": "Returns a list of all of the photos posted by the user specified by `userId`.\n"
 							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
+							"response": [
 								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"lodgings\": [\n  {\n   \"userId\": 7,\n   \"businessId\": 3,\n   \"caption\": \"Kale!\"\n  },\n  {\n   \"userId\": 7,\n   \"businessId\": 3,\n   \"caption\": \"Kale!\"\n  }\n ]\n}"
-						}
-					]
-				},
-				{
-					"name": "Fetch a user's reviews.",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/reviews",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"reviews"
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "21",
-									"type": "string",
-									"description": "(Required) Unique ID of a user."
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId/photos",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId",
+												"photos"
+											],
+											"variable": [
+												{
+													"key": "userId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"lodgings\": [\n  {\n   \"userId\": 7,\n   \"businessId\": 3,\n   \"caption\": \"Kale!\"\n  },\n  {\n   \"userId\": 7,\n   \"businessId\": 3,\n   \"caption\": \"Kale!\"\n  }\n ]\n}"
 								}
 							]
 						},
-						"description": "Returns a list of all of the reviews written by the user specified by `userId`.\n"
-					},
-					"response": [
 						{
-							"name": "Success",
-							"originalRequest": {
+							"name": "Fetch a user's reviews.",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{baseUrl}}/users/:userId/reviews",
 									"host": [
@@ -1726,50 +1731,158 @@
 									],
 									"variable": [
 										{
-											"key": "userId"
+											"key": "userId",
+											"value": "6",
+											"description": "(Required) Unique ID of a user."
 										}
 									]
-								}
+								},
+								"description": "Returns a list of all of the reviews written by the user specified by `userId`.\n"
 							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
+							"response": [
 								{
-									"key": "Content-Type",
-									"value": "application/json"
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId/reviews",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId",
+												"reviews"
+											],
+											"variable": [
+												{
+													"key": "userId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"lodgings\": [\n  {\n   \"userId\": 7,\n   \"businessId\": 3,\n   \"dollars\": 3,\n   \"stars\": 5,\n   \"review\": \"Great produce!\"\n  },\n  {\n   \"userId\": 7,\n   \"businessId\": 3,\n   \"dollars\": 3,\n   \"stars\": 5,\n   \"review\": \"Great produce!\"\n  }\n ]\n}"
 								}
-							],
-							"cookie": [],
-							"body": "{\n \"lodgings\": [\n  {\n   \"userId\": 7,\n   \"businessId\": 3,\n   \"dollars\": 3,\n   \"stars\": 5,\n   \"review\": \"Great produce!\"\n  },\n  {\n   \"userId\": 7,\n   \"businessId\": 3,\n   \"dollars\": 3,\n   \"stars\": 5,\n   \"review\": \"Great produce!\"\n  }\n ]\n}"
+							]
 						}
 					]
+				},
+				{
+					"name": "Add a new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Fredrico Thunder\",\n    \"email\": \"Fredrico@Thunder.com\",\n    \"password\": \"hunter2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login as a user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"nick@block15.com\",\n    \"password\": \"hunter2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "ace8995f-e2f2-40f5-8d8d-f61fac986d6d",
 				"type": "text/javascript",
 				"exec": [
-					""
+					"let shouldRequestToken = pm.environment.get(\"shouldRequestToken\");",
+					"console.log(shouldRequestToken);",
+					"",
+					"if (shouldRequestToken === \"true\") {",
+					"    const url = pm.environment.get('baseUrl') + '/users/login';",
+					"    const requestBody = {",
+					"        \"email\": pm.environment.get('userEmail'),",
+					"        \"password\": pm.environment.get('userPassword')",
+					"    };",
+					"    console.log(requestBody)",
+					"    pm.sendRequest({",
+					"        url: url,",
+					"        method: 'POST',",
+					"        header: 'content-type: application/json',",
+					"        body: {",
+					"            mode: 'raw',",
+					"            raw: JSON.stringify(requestBody)",
+					"        }",
+					"    }, function (err, res) {",
+					"        if (err) {",
+					"            console.log(err);",
+					"        } else {",
+					"            const jsonResponse = res.json();",
+					"            pm.environment.set('token', jsonResponse.token);",
+					"        }",
+					"    });",
+					"    console.log(pm.environment.get('token'))",
+					"",
+					"}"
 				]
 			}
 		},
 		{
 			"listen": "test",
 			"script": {
-				"id": "08267e8e-77ce-41bb-ba37-5c25a83dcb84",
 				"type": "text/javascript",
 				"exec": [
 					""
 				]
 			}
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
