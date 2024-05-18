@@ -28,8 +28,6 @@
     "sequelize": "^6.19.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.2.0",
-    "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
     "globals": "^15.2.0",
     "nodemon": "^2.0.16"
