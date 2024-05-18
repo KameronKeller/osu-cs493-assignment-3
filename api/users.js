@@ -6,7 +6,7 @@ const { Review } = require('../models/review')
 const { User, UserClientFields } = require('../models/user')
 const { ValidationError } = require('sequelize')
 
-const { generateAuthToken, validateUser } = require('../lib/auth')
+const { generateAuthToken, validateUser, requireAuthentication, isAuthorized, unauthorizedResponse } = require('../lib/auth')
 
 const router = Router()
 
@@ -51,14 +51,21 @@ router.get('/:userId/photos', async function (req, res) {
 /*
  * Route to get info about a user.
  */
-router.get('/:userId', async function (req, res) {
-  const userId = req.params.userId
-  const user = await User.findByPk(userId, {attributes: ['name', 'email', 'admin']})
-  if (user) {
-    res.status(200).send(user)
-  } else {
-    next()
-  }
+router.get(
+  '/:userId',
+  requireAuthentication,
+  async function (req, res) {
+    const userId = req.params.userId
+    if (isAuthorized(req)) {
+      const user = await User.findByPk(userId, {attributes: ['name', 'email', 'admin']})
+      if (user) {
+        res.status(200).send(user)
+      } else {
+        next()
+      }
+    } else {
+      unauthorizedResponse(res)
+    }
 
 })
 
