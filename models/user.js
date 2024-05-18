@@ -18,7 +18,6 @@ const User = sequelize.define('user', {
 
 User.beforeCreate(async (user, options) => {
     const hashedPassword = await hashPassword(user.password);
-    console.log("== hashedPassword", hashedPassword);
     user.password = hashedPassword;
   });
 
@@ -27,7 +26,6 @@ User.beforeBulkCreate( (users, options) => {
         // hash synchronously on db init
         // ref: https://stackoverflow.com/a/73513791/7100879
         const hashedPassword = bcrypt.hashSync(user.password, 8);
-        console.log("== hashedPassword", hashedPassword);
         user.password = hashedPassword
     })
 })
