@@ -11,7 +11,7 @@ const { generateAuthToken, validateUser, requireAuthentication, isAuthorized, un
 const router = Router()
 
 async function getUser(email) {
-  const user = await User.findOne({ where: { email: email } });
+  const user = await User.findOne({ where: { email: email } })
   return user
 }
 
@@ -21,7 +21,7 @@ async function getUser(email) {
 router.get('/:userId/businesses',
 requireAuthentication,
 async function (req, res) {
-  if (isAuthorized(req)) {
+  if (await isAuthorized(req)) {
     const userId = req.params.userId
     const userBusinesses = await Business.findAll({ where: { ownerId: userId }})
     res.status(200).json({
@@ -36,7 +36,7 @@ async function (req, res) {
  * Route to list all of a user's reviews.
  */
 router.get('/:userId/reviews', requireAuthentication, async function (req, res) {
-  if (isAuthorized(req)) {
+  if (await isAuthorized(req)) {
     const userId = req.params.userId
     const userReviews = await Review.findAll({ where: { userId: userId }})
     res.status(200).json({
@@ -51,7 +51,7 @@ router.get('/:userId/reviews', requireAuthentication, async function (req, res) 
  * Route to list all of a user's photos.
  */
 router.get('/:userId/photos', requireAuthentication, async function (req, res) {
-  if (isAuthorized(req)) {
+  if (await isAuthorized(req)) {
     const userId = req.params.userId
     const userPhotos = await Photo.findAll({ where: { userId: userId }})
     res.status(200).json({
@@ -69,7 +69,7 @@ router.get(
   '/:userId',
   requireAuthentication,
   async function (req, res) {
-    if (isAuthorized(req)) {
+    if (await isAuthorized(req)) {
       const userId = req.params.userId
       const user = await User.findByPk(userId, {attributes: ['name', 'email', 'admin']})
       if (user) {
@@ -104,30 +104,30 @@ router.post('/', async function (req, res) {
  * Route to login as a user.
  */
 router.post("/login", async function (req, res) {
-  const email = req.body.email;
-  const password = req.body.password;
+  const email = req.body.email
+  const password = req.body.password
   if (!req.body || !email || !password) {
     res.status(400).json({
       error: "Request body needs user email and password.",
-    });
+    })
   } else {
     try {
       const user = await getUser(email)
-      const authenticated = await validateUser(user, password);
+      const authenticated = await validateUser(user, password)
       if (authenticated) {
         const token = generateAuthToken(user.id)
-        res.status(200).send({token: token});
+        res.status(200).send({token: token})
       } else {
         res.status(401).send({
           error: "Invalid authentication credentials"
-        });
+        })
       }
     } catch (e) {
       res.status(500).send({
         error: "Error logging in.  Try again later."
-      });
+      })
     }
   }
-});
+})
 
 module.exports = router

@@ -10,7 +10,7 @@ const router = Router()
  * Route to create a new review.
  */
 router.post('/', requireAuthentication, async function (req, res, next) {
-  if (isAuthorized(req)) {
+  if (await isAuthorized(req)) {
     try {
       const review = await Review.create(req.body, ReviewClientFields)
       res.status(201).send({ id: review.id })
@@ -43,7 +43,7 @@ router.get('/:reviewId', async function (req, res, next) {
  * Route to update a review.
  */
 router.patch('/:reviewId', requireAuthentication, async function (req, res, next) {
-  if (isAuthorized(req)) {
+  if (await isAuthorized(req)) {
     const reviewId = req.params.reviewId
   
     /*
@@ -69,7 +69,7 @@ router.patch('/:reviewId', requireAuthentication, async function (req, res, next
  * Route to delete a review.
  */
 router.delete('/:reviewId', requireAuthentication, async function (req, res, next) {
-  if (isAuthorized(req)) {
+  if (await isAuthorized(req)) {
     const reviewId = req.params.reviewId
     const result = await Review.destroy({ where: { id: reviewId }})
     if (result > 0) {

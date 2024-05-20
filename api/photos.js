@@ -10,7 +10,7 @@ const router = Router()
  * Route to create a new photo.
  */
 router.post('/', requireAuthentication, async function (req, res, next) {
-  if (isAuthorized(req)) {
+  if (await isAuthorized(req)) {
     try {
       const photo = await Photo.create(req.body, PhotoClientFields)
       res.status(201).send({ id: photo.id })
@@ -43,7 +43,7 @@ router.get('/:photoId', async function (req, res, next) {
  * Route to update a photo.
  */
 router.patch('/:photoId', requireAuthentication, async function (req, res, next) {
-  if (isAuthorized(req)) {
+  if (await isAuthorized(req)) {
     const photoId = req.params.photoId
   
     /*
@@ -69,7 +69,7 @@ router.patch('/:photoId', requireAuthentication, async function (req, res, next)
  * Route to delete a photo.
  */
 router.delete('/:photoId',requireAuthentication, async function (req, res, next) {
-  if (isAuthorized(req)) {
+  if (await isAuthorized(req)) {
     const photoId = req.params.photoId
     const result = await Photo.destroy({ where: { id: photoId }})
     if (result > 0) {
