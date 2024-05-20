@@ -23,7 +23,7 @@ const userData = require('./data/users.json')
 
 sequelize.sync().then(async function () {
   await User.bulkCreate(userData, { hooks: true, fields: UserClientFields})
-  await User.create(adminUser);
+  await User.create(adminUser)
   await Business.bulkCreate(businessData, { fields: BusinessClientFields })
   await Photo.bulkCreate(photoData, { fields: PhotoClientFields })
   await Review.bulkCreate(reviewData, { fields: ReviewClientFields })
